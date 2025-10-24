@@ -23,3 +23,9 @@ the reset method and repeating out steps.
 28) the fill method is used to set every element in the state to
 the index 0.In the index 0,there is just one cell(*) so that is what
  it sets it at.
+ 
+ 
+ 29)Yes different patterns emerge this time,if we give more cells
+ then it makes the resukt have chaotic patterns compared to the original.
+ Yes they are deterministic,we can set our cells to whatever in the
+ 1 state and the resulting patterns will always be the same.
