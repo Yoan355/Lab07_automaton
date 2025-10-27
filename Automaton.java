@@ -11,7 +11,7 @@ public class Automaton
     // The number of cells.
     private final int numberOfCells;
     // The state of the cells.
-    private int[] state;
+    private int[] state; /// []
     
     /**
      * Create a 1D automaton consisting of the given number of cells.
@@ -21,8 +21,10 @@ public class Automaton
     {
         this.numberOfCells = numberOfCells;
         state = new int[numberOfCells];
+        System.out.print("State: " + (numberOfCells / 2));
         // Seed the automaton with a single 'on' cell in the middle.
-        state[numberOfCells / 2] = 1;
+        state[numberOfCells / 2] = 1;     ///                                     [0,1,2..]   
+        
     }
     
     /**
@@ -47,16 +49,18 @@ public class Automaton
     public void update() //30
 {
     // Build the new state in a separate array.
-    int[] nextState = new int[state.length];
-    // Naively update the state of each cell
-    // based on the state of its two neighbors.
-    for(int i = 0; i < state.length; i++) {
-        int left = (i == 0) ? 0 : state[i - 1];
-        int center = state[i];
-        int right = (i + 1 < state.length) ? state[i + 1] : 0;
-        nextState[i] = (left + center + right) % 2;
+    int[] nextState = new int[state.length]; //Creates nextState array
+    //with same length of current state.This is where updates values are stored
+ 
+    for(int i = 0; i < state.length; i++)// A loop that goes through every cell in the state array.
+ {
+        int left = (i == 0) ? 0 : state[i - 1];//If i==0,there is no left cell so we use 0,else we do i-1 in the state array.
+        int center = state[i];//gets the current cell value
+        int right = (i + 1 < state.length) ? state[i + 1] : 0; // If current cell value + 1 is smaller than the length of array,return i+1 value stored,
+        //) else(not within bounds) return 0.
+        state[i] = (left + center + right) % 2;//Calculates new value for the current cell and stores the result in nextState[] Array.
     }
-    state = nextState;
+    
 }
 
     
