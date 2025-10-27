@@ -45,23 +45,25 @@ public class Automaton
     
     /**
      * Update the automaton to its next state.
-     */
-    public void update() //30
-{
-    // Build the new state in a separate array.
-    int[] nextState = new int[state.length]; //Creates nextState array
-    //with same length of current state.This is where updates values are stored
- 
-    for(int i = 0; i < state.length; i++)// A loop that goes through every cell in the state array.
- {
-        int left = (i == 0) ? 0 : state[i - 1];//If i==0,there is no left cell so we use 0,else we do i-1 in the state array.
-        int center = state[i];//gets the current cell value
-        int right = (i + 1 < state.length) ? state[i + 1] : 0; // If current cell value + 1 is smaller than the length of array,return i+1 value stored,
-        //) else(not within bounds) return 0.
-        state[i] = (left + center + right) % 2;//Calculates new value for the current cell and stores the result in nextState[] Array.
-    }
+     *///33
     
+public void update() {
+    int[] nextState = new int[state.length];
+    int left = 0;
+    int center = state[0];
+
+    for (int i = 0; i < state.length; i++) {
+        int right = (i + 1 < state.length) ? state[i + 1] : 0;
+        nextState[i] = (left + center + right) % 2;
+
+        // moves values forward for next iteration
+        left = center;
+        center = right;
+    }
+
+    state = nextState;
 }
+
 
     
     /**
@@ -76,4 +78,19 @@ public class Automaton
     state[center] = 1;
     state[center + 1] = 1;
 }
+
+private int calculateNextState(int left, int center, int right) { //36
+
+   
+    return (left + center + right) % 2;
+    
+    
+    
+}
+
+
+
+
+
+
 }
