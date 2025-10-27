@@ -13,6 +13,8 @@ public class Automaton
     // The state of the cells.
     private int[] state; /// []
     
+    private int nextState[];
+    
     /**
      * Create a 1D automaton consisting of the given number of cells.
      * @param numberOfCells The number of cells in the automaton.
@@ -45,26 +47,20 @@ public class Automaton
     
     /**
      * Update the automaton to its next state.
-     *///33
+     *///36
     
 public void update() {
-    int[] nextState = new int[state.length];
     int left = 0;
-    int center = state[0];
+int center = state[0];
 
-    for (int i = 0; i < state.length; i++) {
-        int right = (i + 1 < state.length) ? state[i + 1] : 0;
-        nextState[i] = (left + center + right) % 2;
-
-        // moves values forward for next iteration
-        left = center;
-        center = right;
-    }
-
-    state = nextState;
+for (int i=0; i<numberOfCells; i++){
+int right = state[i+1];
+nextState[i] = calculateNextState(left, center, right);
+left = center;
+center = right;
 }
 
-
+}
     
     /**
      * Reset the automaton.
@@ -79,7 +75,7 @@ public void update() {
     state[center + 1] = 1;
 }
 
-private int calculateNextState(int left, int center, int right) { //36
+private int calculateNextState(int left, int center, int right) { //34
 
    
     return (left + center + right) % 2;

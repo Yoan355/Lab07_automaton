@@ -40,4 +40,10 @@ the index 0.In the index 0,there is just one cell(*) so that is what
  32) Yes  you can avoid the problems from the previous exercise without using a new array by retaining 
  the previous cell's original value(left) and the current cell's 
  original value(center)
+ 
+ 
+ 
+ 34) Well,each cell has 3 neighbours(left,center,right),and each can be either 0 or 1.So,2^3=8
+ for each of those 8 combinations the total number of unique rules are 2^8,so 256 unique rules.No there is
+ not an infinite amount of possibilities.
 
